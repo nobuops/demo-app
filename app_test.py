@@ -1,17 +1,20 @@
 import pytest
 from app import app
 
+
 @pytest.fixture
 def client():
     app.config["TESTING"] = True
     with app.test_client() as client:
         yield client
 
+
 def test_health(client):
     response = client.get("/health")
     assert response.status_code == 200
     data = response.get_json()
     assert data["status"] == "healthy"
+
 
 def test_get_item_found(client):
     response = client.get("/items/1")
@@ -20,6 +23,7 @@ def test_get_item_found(client):
     assert data["id"] == 1
     assert data["name"] == "Widget A"
     assert data["price"] == 9.99
+
 
 def test_get_item_not_found(client):
     response = client.get("/items/999")
