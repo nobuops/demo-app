@@ -1,0 +1,5 @@
+# Require explicit review for CI/CD and deployment-sensitive files
+.github/workflows/* @nobuops
+Dockerfile @nobuops
+requirements.txt @nobuops
+CODEOWNERS @nobuops
